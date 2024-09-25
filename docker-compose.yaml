@@ -13,3 +13,16 @@ services:
       - "80:80"
     depends_on:
       - apache
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./apache/site/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  
